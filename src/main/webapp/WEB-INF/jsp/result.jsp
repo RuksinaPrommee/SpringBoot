@@ -6,5 +6,4 @@ First Name:
 Last Name:
 <p>${user.lastName}
 <p />
-<a href="userform">Submit another message</a>
-
+<a href="form">Submit another message</a>

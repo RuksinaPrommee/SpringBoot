@@ -1,12 +1,29 @@
 package com.example.helloworld;
 
-public class User {
-	
-	private String firstName;
-	private String lastName;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
-	public User() {
+import org.springframework.data.annotation.Id;
+
+@Entity
+public class User {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id") 
+	private int id;
+	
+	public int getId() {
+		return id;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	private String firstName;
 
 	public String getFirstName() {
 		return firstName;
@@ -24,9 +41,20 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	private String lastName;
+
+	public User() {
+	}
+
+	public User(int id,String firstName, String lastName) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("User[firstName='%s', lastName='%s']", firstName, lastName);
+		return String.format("User[id=%d, firstName='%s', lastName='%s']", id, firstName, lastName);
 	}
 
 }
