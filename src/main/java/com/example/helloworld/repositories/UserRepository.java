@@ -1,13 +1,14 @@
-package com.example.helloworld;
+package com.example.helloworld.repositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
+import com.example.helloworld.model.User;
+
+@Repository
 public interface UserRepository extends MongoRepository<User, String> {
 
 	public User findById(int id);
 	public User countById(int id);
-	//public void updateUser(User user);	
-	//public User findByFirstName(String firstName);
-	//public User findByLastName(String lastName);
 
 }
