@@ -2,17 +2,11 @@ package com.example.helloworld.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,22 +30,6 @@ public class UserController {
 	@Autowired
 	private UserDAO userDao;
 
-	//logout
-	@PostMapping("/logout")
-	public String LogOut(HttpServletRequest request,HttpServletResponse response){
-	HttpSession session= request.getSession(false);
-	    SecurityContextHolder.clearContext();
-	         session= request.getSession(false);
-	        if(session != null) {
-	            session.invalidate();
-	        }
-	        for(Cookie cookie : request.getCookies()) {
-	            cookie.setMaxAge(0);
-	        }
-
-	    return "login";
-	}
-	
 	// Get All Users
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> listAllUsers() {
